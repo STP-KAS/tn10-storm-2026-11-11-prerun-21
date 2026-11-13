@@ -19,6 +19,8 @@
 
 ## What pre-run 21 tries: the cap test and the template probe
 
+> **Result: void.** The desk and the Mini lost internet from about 10:25Z to 10:33Z (a robot vacuum knocked the network switch), so the reference and the template probe landed almost nothing and the cap test never started. Stopped with `logs/FAILED.md` at 10:35Z, nothing sent, no findings. [LESSONS](logs/LESSONS.md) · rerun as [pre-run 22](https://github.com/STP-KAS/tn10-storm-2026-11-11-prerun-22).
+
 > **We run our own heavy lane on TN10 again, and it slows other TN10 users' transactions.** In this pre-run we submit one bounded stream of our own heavy transactions (about 266,700 storage mass each, 8, 15 or 30 chains, at a fixed 460 and, for about five minutes, at the 2,000 sompi/gram cap) from our own test coins. While it runs, other TN10 users' transactions paying up to about the lane's rate wait longer. The operator gave the explicit OK for our lane (2026-11-12), said tKAS is not a limit and asked us to test at will, and on 2026-11-13 said to do what is best needed for the study and to keep going. The lane is calibrated on the node first (at 100 and at 2,000), capped by ready count, by a per-minute submit cap, by a rate cap, by a cap guard and by a spend cap, stopped before the drain, and every step is in this repo. This is our own testing; tKAS has no value.
 
 - **One lane.** Pre-run 20's lane process (lane 2 at N = 0), each transaction about 266,700 storage mass, from the key-16 pile, with two additions: a per-minute submit cap that paces the lane evenly (`control/LANE-PERMIN`), and a lower fee cap the runner may set (`control/LANE-CAP-FEES`). About one such transaction fits a 500,000 block.

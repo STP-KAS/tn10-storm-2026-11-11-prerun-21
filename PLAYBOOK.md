@@ -75,11 +75,11 @@ Two rehearsals ran on the desk against the fake node (no network for the sends),
 
 ## Status after the live run
 
-AFTER_PLACEHOLDER
+Void. The desk and the Mini lost internet from about 10:25Z to 10:33Z (a robot vacuum knocked the network switch); the reference and the template probe landed almost nothing and the cap test never started. Stopped by `logs/FAILED.md` at 10:35:00Z on the operator's instruction; nothing sent. Lane 207 accepted, 0 rejected, 320.40 tKAS fees (7.76 parked); families about 196 tKAS. See [logs/LESSONS.md](logs/LESSONS.md). Rerun as [pre-run 22](https://github.com/STP-KAS/tn10-storm-2026-11-11-prerun-22).
 
 ### Public statement
 
-We run our own heavy lane on TN10 in this pre-run, with the operator's OK: 8, 15 and 30 chains at a fixed 460 for 6 minutes, then 8 chains for 10 minutes at rates our rule sets between 150 and the 2,000 sompi/gram cap, about five of them at 2,000. While it runs, other TN10 users' transactions paying up to about the lane's rate wait longer on the nodes that see them. The figures for this run are added here after it. This is our own testing; tKAS has no value.
+We run our own heavy lane on TN10 in this pre-run, with the operator's OK: 8, 15 and 30 chains at a fixed 460 for 6 minutes, then 8 chains for 10 minutes at rates our rule sets between 150 and the 2,000 sompi/gram cap, about five of them at 2,000. While it runs, other TN10 users' transactions paying up to about the lane's rate wait longer on the nodes that see them. In this run the lane landed only 207 transactions before it was stopped (the network outage); its effect on other users was too small and too disturbed to read. This is our own testing; tKAS has no value.
 
 ## When something breaks
 

@@ -645,3 +645,11 @@ These lines are baked into this repo's own pastes. They come from pre-run 20's l
 ## Locked during pre-run 21
 
 When a fix works, append it here, one block per fix, in the form shown above: UTC time, what failed or worked, what was changed, why that change stays.
+
+```
+- 2026-11-13T10:35:00Z.
+- What failed: the desk and the Mini lost internet about 10:25Z-10:33Z (a robot vacuum knocked the network switch). The lane could not reach its node, the families stopped, pushes were stuck; the runner's minute checks waited behind them. Run stopped with logs/FAILED.md on the operator's instruction; bot sent nothing; Mini and desk runners stopped on it.
+- What worked: the rehearsal fix (lane pacing under a submit cap: 230 a minute, was 177-180); FAILED.md stopped every runner within seconds; both nodes back in sync by 10:38Z.
+- What was changed: nothing during the run.
+- Why it stays, for the next repo: add a connectivity guard on its own timer (2 closed minutes with the lane due but no submit accepted or nothing of ours landed -> stop everything, no sends, publish FAILED). Spend about 540 tKAS; no findings.
+```
