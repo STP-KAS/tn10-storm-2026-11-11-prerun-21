@@ -67,7 +67,11 @@ Not a gate. Read on 2026-11-13 between 08:58Z and 09:12Z. This is our own TN10 t
 
 ## Offline rehearsal, recorded before `PRE-RUN-OPEN`
 
-REHEARSAL_PLACEHOLDER
+Two rehearsals ran on the desk against the fake node (no network for the sends), with 2-minute steps for BASE, the reference, the template probe and RETURN (`STORM_LANE_MIN=2`, `STORM_RET_MIN=2`), the cap test at its full 10 minutes (`STORM_CAP_MIN=10`), and the probe's full read capped at 5,000 entries.
+
+- `p21-a`, 2026-11-13 09:17:04Z to 09:46:28Z. Preflight passed; `BUDGET_CHECK` logged (key 0 49,612 usable, 30 planned family minutes, projected end 26,812, over the line plus margin); genesis 16 of 16; `FEE_SPLIT` floor 100, r150 150, r300 300, r450 450; `LANE_PLAN` as in the plan. The cap path did what the plan says: from 600, 600 to 1,200 to 2,000, four decided minutes at 2,000, `CAP_REACHED` after 6 minutes, back to 150, two decisions (150 to 300 to 600), `FROZEN_ARM` lowered the lane's fee cap on purpose, the lane stopped on that cap (`LANE_CAP`), and the rule froze (`FROZEN reason=lane-stopped:cap`). 2,757 lane submits OK, 0 rejected, 0 lost; `RUNNER_EXIT 0`. One fault found: under the 230-a-minute submit cap the lane paced only 177 to 180 a minute (the pacing bucket dropped the fraction). Fixed in the lane process (commit 8af057a).
+- `p21-b`, 2026-11-13 09:48:23Z to 10:18:28Z, on the final files (the same files, by hash after line endings, as the live run and this repo's `tools/desk`: desk runner, lane, counter, probe, template watcher). The template probe now paced 230, 230 (N 15) and 230, 230 (N 30) a minute. The cap path repeated: 600 to 1,200 to 2,000, four decided minutes at 2,000, `CAP_REACHED`, 150 to 300 to 600, `FROZEN_ARM`, `LANE_CAP`, `FROZEN reason=lane-stopped:cap`. 2,957 lane submits OK, 0 rejected, 0 lost. The template watcher wrote 565 rows. Every step file, TIMELINE, MEMPOOL and METHOD published to the rehearsal's local origin; no `ERROR` line; `RUNNER_EXIT 0`.
+- The fake node does not model block space or fee priority, so the landing numbers above say nothing about the network. They only show that the controller, the cap guard and the freeze run as written.
 
 ## Status after the live run
 
