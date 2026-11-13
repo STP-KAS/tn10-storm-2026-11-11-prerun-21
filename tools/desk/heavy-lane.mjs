@@ -131,7 +131,7 @@ while (!fs.existsSync(P("control", "STOP"))) {
     if (h && !held) { held = true; phase(`LANE_HOLD mempool=${s.size} ready_blocks=${s.ready_blocks ?? "-"}`); } else if (!h && held) { held = false; phase(`LANE_HOLD_CLEAR mempool=${s.size} ready_blocks=${s.ready_blocks ?? "-"}`); }
   }
   if (!stopped && (tot.fees >= CAPF || tot.fees + tot.parked >= CAP_MOVED || pileStart - tot.fees - tot.parked < PILE_FLOOR)) { stopped = "cap"; phase(`LANE_CAP cap_fees_tkas=${(CAPF / 1e8).toFixed(0)} fees_tkas=${(tot.fees / 1e8).toFixed(2)} moved_tkas=${((tot.fees + tot.parked) / 1e8).toFixed(2)}`); }
-  const now = Date.now(); const PS = Math.min(PER_S, PERMIN / 60), BMAX = PERMIN < PER_MIN ? Math.max(1, PS) : PER_S; for (const L of [1, 2]) bucketL[L] = Math.min(BMAX, bucketL[L] + ((now - lastFill) / 1000) * PS);   // pre-run 21: under a submit cap, paced evenly lastFill = now;
+  const now = Date.now(); const PS = Math.min(PER_S, PERMIN / 60), BMAX = PERMIN < PER_MIN ? 2 * PS + 1 : PER_S; for (const L of [1, 2]) bucketL[L] = Math.min(BMAX, bucketL[L] + ((now - lastFill) / 1000) * PS);   // pre-run 21: under a submit cap, paced evenly (the bucket holds up to two seconds plus one token so the fraction and slow ticks carry over; rehearsal p21-a without it paced 177-180 a minute for a cap of 230) lastFill = now;
   if (!stopped && !paused && !held && inMp) {
     const jobs = [];
     // pre-run 17: both lanes each tick; which lane goes first alternates tick by tick (so neither always submits first)
